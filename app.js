@@ -513,29 +513,37 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
-  var reply = messageText + "?"
 
-  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&query='+messageText, results)
+  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&query='+messageText)
       .then(function (response) {
-        console.log(response);
+        var reply = response.data.search.runtime;
+        var messageData = {
+          recipient: {
+            id: recipientId
+          },
+          message: {
+            text: reply,
+            metadata: "DEVELOPER_DEFINED_METADATA"
+          }
+        };
+
+        callSendAPI(messageData);
       })
       .catch(function (error) {
         console.log(error);
+        var reply = messageText + "?"
+        var messageData = {
+          recipient: {
+            id: recipientId
+          },
+          message: {
+            text: reply,
+            metadata: "DEVELOPER_DEFINED_METADATA"
+          }
+        };
+        callSendAPI(messageData);
+
       });
-
-  reply = results.data.search.runtime;
-
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: reply,
-      metadata: "DEVELOPER_DEFINED_METADATA"
-    }
-  };
-
-  callSendAPI(messageData);
 }
 
 /*
