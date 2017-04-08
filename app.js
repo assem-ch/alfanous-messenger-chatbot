@@ -528,7 +528,17 @@ function sendTextMessage(recipientId, messageText) {
           },
           message: {
             text: reply,
-            metadata: "DEVELOPER_DEFINED_METADATA",
+            metadata: "DEVELOPER_DEFINED_METADATA"
+            }
+        };
+
+        callSendAPI(messageData);
+
+        var messageData = {
+          recipient: {
+            id: recipientId
+          },
+          message: {
             attachment: {
               type: "audio",
               payload: {
