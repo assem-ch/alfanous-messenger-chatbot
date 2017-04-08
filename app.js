@@ -516,7 +516,8 @@ function sendTextMessage(recipientId, messageText) {
 
   axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&query='+messageText)
       .then(function (response) {
-        var reply = response.data.search.runtime;
+        var reply = "{" + response.data.search.ayas["1"].identifier.sura_arabic_name + " "+ response.data.search.ayas["1"].identifier.aya_id + "}";
+        reply += "\n{"+response.data.search.ayas["1"].aya.text+"}"
         var messageData = {
           recipient: {
             id: recipientId
