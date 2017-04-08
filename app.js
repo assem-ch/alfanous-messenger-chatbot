@@ -285,24 +285,15 @@ function receivedMessage(event) {
         sendQuickReply(senderID);
         break;
 
-      case 'read receipt':
-        sendReadReceipt(senderID);
-        break;
-
-      case 'typing on':
-        sendTypingOn(senderID);
-        break;
-
-      case 'typing off':
-        sendTypingOff(senderID);
-        break;
-
-      case 'account linking':
-        sendAccountLinking(senderID);
-        break;
+      // case 'account linking':
+      //   sendAccountLinking(senderID);
+      //   break;
 
       default:
+        sendReadReceipt(senderID);
+        sendTypingOn(senderID);
         sendTextMessage(senderID, messageText);
+        sendTypingOff(senderID);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
@@ -549,6 +540,40 @@ function sendTextMessage(recipientId, messageText) {
         };
 
         callSendAPI(messageData);
+
+        var messageData = {
+          recipient: {
+            id: recipientId
+          },
+          message: {
+            attachment: {
+              type: "template",
+              payload: {
+                template_type: "generic",
+                elements: [{
+                  title: "{" + response.data.search.ayas["1"].identifier.sura_arabic_name + " "+ response.data.search.ayas["1"].identifier.aya_id + "}",
+                  //subtitle: "Next-generation virtual reality",
+                  item_url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),
+                  buttons: [{
+                    type: "web_url",
+                    url: "https://www.oculus.com/en-us/rift/",
+                    title: "فتح في الموقع"
+                  }, {
+                    type: "postback",
+                    title: "تفاصيل أكثر...",
+                    payload: "Payload for first bubble",
+                  }],
+                },
+                ]
+              }
+            }
+          }
+        };
+
+        callSendAPI(messageData);
+
+
+
       })
       .catch(function (error) {
         console.log(error);
