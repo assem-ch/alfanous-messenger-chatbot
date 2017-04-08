@@ -167,8 +167,13 @@ function receivedPostback(event) {
   sendTextMessage(senderID, "Postback called");
 }
 
+
+app.get('/policy', function (req, res){
+  res.send('We don’t store your data, period.');
+})
+
 app.get('/', function (req, res) {
-  res.send('Salam')
+  res.send('Chat bot for messenger that answer your queries about Quran!')
 })
 
 var PORT = process.env.PORT || 8080;
