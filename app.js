@@ -1,5 +1,11 @@
 var express = require('express')
+var bodyParser = require('body-parser')
 var app = express()
+
+
+// body parser middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/webhook', function (req, res) {
