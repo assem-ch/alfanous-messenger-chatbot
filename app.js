@@ -563,6 +563,9 @@ function sendTextMessage(recipientId, messageText) {
           }
         }
 
+        console.log(ayas)
+        console.log(elements)
+
 
 
         var messageData = {
