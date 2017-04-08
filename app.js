@@ -2,7 +2,7 @@ var express = require('express')
 var app = express()
 
 
-var TOKEN = "token"
+var TOKEN = "67ghjfcxdcfjgvkhbjlv"
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === TOKEN) {
@@ -22,6 +22,7 @@ app.get('/', function (req, res) {
 var PORT = process.env.PORT || 8080;
 var HOST = process.env.HOST || '0.0.0.0';
 
-app.listen(PORT, HOST, () => {
+app.listen(PORT, HOST, function() {
+
       console.log('listening...');
 });
