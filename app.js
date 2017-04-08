@@ -546,7 +546,8 @@ function sendTextMessage(recipientId, messageText) {
         var elements = new Array()
         for (var i = 0; i < ayas.length; i++) {
           var aya = ayas["" + (i + 1)]
-          elements[i] = {
+          console.log(aya)
+          elements.push({
             subtitle: "{" + aya.identifier.sura_arabic_name + " " + aya.identifier.aya_id + "}",
             title: aya.aya.text_no_highlight,
             item_url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"" + aya.identifier.sura_arabic_name + "\" + aya_id:" + aya.identifier.aya_id),
@@ -560,7 +561,7 @@ function sendTextMessage(recipientId, messageText) {
               payload: "Payload for first bubble"
             }
             ]
-          }
+          })
         }
 
         console.log(ayas)
