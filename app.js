@@ -513,17 +513,17 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
+  var reply = messageText + "?"
 
-
-  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&query='+messageText)
+  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&query='+messageText, results)
       .then(function (response) {
         console.log(response);
-        var reply = response.data.search.runtime;
       })
       .catch(function (error) {
         console.log(error);
-        var reply = messageText + "?"
       });
+
+  reply = results.data.search.runtime;
 
   var messageData = {
     recipient: {
