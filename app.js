@@ -499,6 +499,7 @@ function sendFileMessage(recipientId) {
   callSendAPI(messageData);
 }
 
+
 /*
  * Send a text message using the Send API.
  *
@@ -541,6 +542,29 @@ function sendTextMessage(recipientId, messageText) {
 
         callSendAPI(messageData);
 
+        var ayas = response.data.search.ayas
+        var elements = new Array()
+        for (var i = 0; i < ayas.length; i++) {
+          var aya = ayas["" + (i + 1)]
+          elements[i] = {
+            subtitle: "{" + aya.identifier.sura_arabic_name + " " + aya.identifier.aya_id + "}",
+            title: aya.aya.text_no_highlight,
+            item_url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"" + aya.identifier.sura_arabic_name + "\" + aya_id:" + aya.identifier.aya_id),
+            buttons: [{
+              type: "web_url",
+              url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"" + aya.identifier.sura_arabic_name + "\" + aya_id:" + aya.identifier.aya_id),
+              title: "فتح في الموقع"
+            }, {
+              type: "postback",
+              title: "تفاصيل أكثر",
+              payload: "Payload for first bubble"
+            }
+            ]
+          }
+        }
+
+
+
         var messageData = {
           recipient: {
             id: recipientId
@@ -550,25 +574,11 @@ function sendTextMessage(recipientId, messageText) {
               type: "template",
               payload: {
                 template_type: "generic",
-                elements: [{
-                  subtitle: "{" + response.data.search.ayas["1"].identifier.sura_arabic_name + " "+ response.data.search.ayas["1"].identifier.aya_id + "}",
-                  title: response.data.search.ayas["1"].aya.text_no_highlight,
-                  item_url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),
-                  buttons: [{
-                    type: "web_url",
-                    url:  encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),
-                    title: "فتح في الموقع"
-                  }, {
-                    type: "postback",
-                    title: "تفاصيل أكثر...",
-                    payload: "Payload for first bubble",
-                  }],
-                },
-                ]
+                elements: elements
+                }
               }
             }
           }
-        };
 
         callSendAPI(messageData);
 
