@@ -528,7 +528,13 @@ function sendTextMessage(recipientId, messageText) {
           },
           message: {
             text: reply,
-            metadata: "DEVELOPER_DEFINED_METADATA"
+            metadata: "DEVELOPER_DEFINED_METADATA",
+            attachment: {
+              type: "audio",
+              payload: {
+                url: response.data.search.ayas["1"].aya.recitation
+              }
+            }
           }
         };
 
