@@ -552,11 +552,11 @@ function sendTextMessage(recipientId, messageText) {
                 template_type: "generic",
                 elements: [{
                   subtitle: "{" + response.data.search.ayas["1"].identifier.sura_arabic_name + " "+ response.data.search.ayas["1"].identifier.aya_id + "}",
-                  title: response.data.search.ayas["1"].aya.text,
+                  title: response.data.search.ayas["1"].aya.text_no_highlight,
                   item_url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),
                   buttons: [{
                     type: "web_url",
-                    url: "https://www.oculus.com/en-us/rift/",
+                    url:  encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),,
                     title: "فتح في الموقع"
                   }, {
                     type: "postback",
