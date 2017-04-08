@@ -4,7 +4,7 @@ var app = express()
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
-  console.log(req)
+  console.log(data)
 
   // Make sure this is a page subscription
   if (data.object === 'page') {
