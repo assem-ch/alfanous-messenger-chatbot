@@ -1,0 +1,17 @@
+{
+  "name": "quran-messenger-chatbot",
+  "version": "0.1.0",
+  "description": "Chatbot backend for facebook messenger",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "quran",
+    "facebook",
+    "messenger",
+    "chatbot"
+  ],
+  "author": "Assem",
+  "license": "AGPL-3.0"
+}
