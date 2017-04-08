@@ -556,7 +556,7 @@ function sendTextMessage(recipientId, messageText) {
                   item_url: encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),
                   buttons: [{
                     type: "web_url",
-                    url:  encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),,
+                    url:  encodeURI("http://www.alfanous.org/?query=sura_arabic:\"\""+ response.data.search.ayas["1"].identifier.sura_arabic_name +" + aya_id:" +  response.data.search.ayas["1"].identifier.aya_id),
                     title: "فتح في الموقع"
                   }, {
                     type: "postback",
