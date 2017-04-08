@@ -514,7 +514,7 @@ function sendFileMessage(recipientId) {
  */
 function sendTextMessage(recipientId, messageText) {
 
-  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&highlight=none&query='+messageText)
+  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&highlight=none&query='+encodeURI(messageText))
       .then(function (response) {
         var reply = "please choose another word?";
 
