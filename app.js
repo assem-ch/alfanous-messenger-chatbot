@@ -8,6 +8,7 @@ const
   config = require('config'),
   crypto = require('crypto'),
   express = require('express'),
+  axios = require('axios'),
   https = require('https'),
   request = require('request');
 
@@ -512,12 +513,23 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
+  var reply = messageText + "?"
+
+  axios.get('http://m.alfanous.org/jos2?action=search&unit=aya&query='+messageText)
+      .then(function (response) {
+        console.log(response);
+        reply = response;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: messageText,
+      text: reply,
       metadata: "DEVELOPER_DEFINED_METADATA"
     }
   };
