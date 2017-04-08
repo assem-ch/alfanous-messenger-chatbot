@@ -13,3 +13,15 @@ app.get('/webhook', function(req, res) {
     res.sendStatus(403);
   }
 });
+
+
+app.get('/', function (req, res) {
+  res.send('Salam')
+})
+
+var PORT = process.env.PORT || 8080;
+var HOST = process.env.HOST || '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
+      console.log('listening...');
+});
