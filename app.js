@@ -543,7 +543,7 @@ function sendTextMessage(recipientId, messageText) {
         callSendAPI(messageData);
 
         var ayas = response.data.search.ayas
-        elements = []
+        var elements = []
         for (var i = 0; i < ayas.length; i++) {
           var aya = ayas["" + (i + 1)]
           console.log(aya)
@@ -564,7 +564,6 @@ function sendTextMessage(recipientId, messageText) {
           })
         }
 
-        console.log(ayas)
         console.log(elements)
 
 
